@@ -35,7 +35,7 @@ const Register: React.FC<RegisterProps> = ({
      return (
           <div className="flex flex-col">
                <Header step={step} handleSignIn={handleSignIn} />
-               <div className="my-[80px] flex-grow flex items-center flex-col justify-center">
+               <div className="my-8 sm:my-10 md:my-[80px] flex-grow flex items-center flex-col justify-center px-5">
                     {step === 1 && (
                          <Step1Form
                               formData={formData}

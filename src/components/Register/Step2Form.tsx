@@ -54,7 +54,6 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                          placeholder="Placeholder"
                          value={formData.officeName}
                          // onChange={handleInputChange('officeName')}
-                         leftIcon={<EmailIcon />}
                          className='mt-[28px]'
                          required
                     />
@@ -64,8 +63,6 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                          label="Commercial Registration Number"
                          placeholder="Placeholder"
                          value={formData.registrationNumber}
-                         // onChange={handleInputChange('officeName')}
-                         leftIcon={<EmailIcon />}
                          className='mt-6'
                          required
                     />
@@ -76,7 +73,6 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                          placeholder="Placeholder"
                          value={formData.licenseNumber}
                          // onChange={handleInputChange('officeName')}
-                         leftIcon={<EmailIcon />}
                          className='mt-6'
                          required
                     />
@@ -87,7 +83,6 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                          placeholder="Placeholder"
                          value={formData.streetAddress}
                          // onChange={handleInputChange('officeName')}
-                         leftIcon={<EmailIcon />}
                          className='mt-6'
                          required
                     />
@@ -97,7 +92,6 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                          label="City"
                          placeholder="Placeholder"
                          value={formData.streetAddress}
-                         leftIcon={<EmailIcon />}
                          className='mt-6  w-fit'
                          required
                     />
@@ -107,7 +101,6 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                          label="Province"
                          placeholder="Placeholder"
                          value={formData.streetAddress}
-                         leftIcon={<EmailIcon />}
                          className='mt-6 w-fit'
                          required
                     />
