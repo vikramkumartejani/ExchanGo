@@ -1,9 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import Image from 'next/image';
-import CustomInput, { EmailIcon } from '../ui/CustomInput';
-import FileUpload from '../SvgIcons/FileUpload';
+import CustomInput from '../ui/CustomInput';
 import ImageUpload from '../ImageUpload';
+import AboutNumber from './AboutNumber';
 
 interface FormData {
      officeName: string;
@@ -33,10 +32,8 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
           console.log('Preview URL:', previewUrl);
      };
 
-     // Individual field errors
      const [fieldErrors, setFieldErrors] = useState<{[key: string]: string}>({});
 
-     // Validation function
      const validateForm = (): boolean => {
           const errors: {[key: string]: string} = {};
           
@@ -86,7 +83,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                               type="text"
                               name="officeName"
                               label="Office Name"
-                              placeholder="Enter office name"
+                              placeholder="Placeholder"
                               value={formData.officeName}
                               onChange={handleInputChange}
                               required
@@ -103,7 +100,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                               type="text"
                               name="registrationNumber"
                               label="Commercial Registration Number"
-                              placeholder="Enter registration number"
+                              placeholder="Placeholder"
                               value={formData.registrationNumber}
                               onChange={handleInputChange}
                               required
@@ -120,7 +117,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                               type="text"
                               name="licenseNumber"
                               label="Currency Exchange License Number"
-                              placeholder="Enter license number"
+                              placeholder="Placeholder"
                               value={formData.licenseNumber}
                               onChange={handleInputChange}
                               required
@@ -137,7 +134,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                               type="text"
                               name="streetAddress"
                               label="Street Address"
-                              placeholder="Enter street address"
+                              placeholder="Placeholder"
                               value={formData.streetAddress}
                               onChange={handleInputChange}
                               required
@@ -149,12 +146,13 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                          )}
                     </div>
                     
-                    <div className='mt-6'>
+                    <div className='w-full grid grid-cols-2 gap-6'>
+                         <div className='mt-6'>
                          <CustomInput
                               type="text"
                               name="city"
                               label="City"
-                              placeholder="Enter city"
+                              placeholder="Placeholder"
                               value={formData.city}
                               onChange={handleInputChange}
                               required
@@ -171,7 +169,7 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                               type="text"
                               name="province"
                               label="Province"
-                              placeholder="Enter province"
+                              placeholder="Placeholder"
                               value={formData.province}
                               onChange={handleInputChange}
                               required
@@ -182,6 +180,10 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
                               </div>
                          )}
                     </div>
+                    </div>
+
+                    <AboutNumber/>
+
                     <button
                          onClick={handleNextClick}
                          className="mt-6 w-full h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"

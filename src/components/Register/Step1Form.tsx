@@ -21,7 +21,6 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
           password: "",
      });
 
-     // Individual field errors and checkbox state
      const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
      const [isTermsAccepted, setIsTermsAccepted] = useState<boolean>(false);
 
@@ -31,7 +30,6 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
                [field]: e.target.value
           }));
 
-          // Clear field error when user starts typing
           if (fieldErrors[field]) {
                setFieldErrors(prev => ({
                     ...prev,
@@ -40,31 +38,25 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
           }
      };
 
-     // Email validation function
      const isValidEmail = (email: string): boolean => {
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           return emailRegex.test(email);
      };
 
-     // Password validation function
      const isValidPassword = (password: string): boolean => {
-          // At least 8 characters, one uppercase, one lowercase, one number
           const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/;
           return passwordRegex.test(password);
      };
 
-     // Form validation function
      const validateForm = (): boolean => {
           const errors: { [key: string]: string } = {};
 
-          // Email validation
           if (!formData.email.trim()) {
                errors.email = 'Email is required';
           } else if (!isValidEmail(formData.email)) {
                errors.email = 'Please enter a valid email address';
           }
 
-          // Password validation
           if (!formData.password.trim()) {
                errors.password = 'Password is required';
           } else if (formData.password.length < 8) {
@@ -73,7 +65,6 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
                errors.password = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
           }
 
-          // Terms and conditions validation
           if (!isTermsAccepted) {
                errors.terms = 'You must accept the Terms & Conditions to continue';
           }
@@ -107,7 +98,6 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
 
      const handleCheckboxChange = (checked: boolean) => {
           setIsTermsAccepted(checked);
-          // Clear terms error when checkbox is checked
           if (checked && fieldErrors.terms) {
                setFieldErrors(prev => ({
                     ...prev,
