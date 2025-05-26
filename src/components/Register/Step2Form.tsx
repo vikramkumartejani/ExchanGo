@@ -31,105 +31,159 @@ const Step2Form: React.FC<Step2FormProps> = ({ formData, handleInputChange, hand
           setError('');
           console.log('File uploaded:', file.name);
           console.log('Preview URL:', previewUrl);
+     };
 
+     // Individual field errors
+     const [fieldErrors, setFieldErrors] = useState<{[key: string]: string}>({});
+
+     // Validation function
+     const validateForm = (): boolean => {
+          const errors: {[key: string]: string} = {};
+          
+          if (!formData.officeName.trim()) {
+               errors.officeName = 'Office name is required';
+          }
+          if (!formData.registrationNumber.trim()) {
+               errors.registrationNumber = 'Commercial registration number is required';
+          }
+          if (!formData.licenseNumber.trim()) {
+               errors.licenseNumber = 'Currency exchange license number is required';
+          }
+          if (!formData.streetAddress.trim()) {
+               errors.streetAddress = 'Street address is required';
+          }
+          if (!formData.city.trim()) {
+               errors.city = 'City is required';
+          }
+          if (!formData.province.trim()) {
+               errors.province = 'Province is required';
+          }
+          
+          setFieldErrors(errors);
+          return Object.keys(errors).length === 0;
+     };
+
+     const handleNextClick = () => {
+          if (validateForm()) {
+               handleNext();
+          }
      };
 
      return (
           <div className='w-full text-center max-w-[398px] mx-auto '>
                <h3 className="text-[#111111] font-bold text-[32px] leading-[38px] mb-2.5">Office Information</h3>
                <p className="text-[#585858] text-base leading-[22px] mb-6 px-2">Let us know more about your office by completing the details below</p>
-
+               
                <div className="">
-
                     <ImageUpload
                          onImageUpload={handleImageUpload}
                          maxSizeInMB={8}
                          recommendedSize="256x256"
                          acceptedFormats={['.png', '.jpeg', '.jpg', '.gif']}
                     />
-
-                    <CustomInput
-                         type="email"
-                         label="Office Name"
-                         placeholder="Placeholder"
-                         value={formData.officeName}
-                         // onChange={handleInputChange('officeName')}
-                         className='mt-[28px]'
-                         required
-                    />
-
-                    <CustomInput
-                         type="email"
-                         label="Commercial Registration Number"
-                         placeholder="Placeholder"
-                         value={formData.registrationNumber}
-                         className='mt-6'
-                         required
-                    />
-
-                    <CustomInput
-                         type="email"
-                         label="Currency Exchange License Number"
-                         placeholder="Placeholder"
-                         value={formData.licenseNumber}
-                         // onChange={handleInputChange('officeName')}
-                         className='mt-6'
-                         required
-                    />
-
-                    <CustomInput
-                         type="email"
-                         label="Street Address"
-                         placeholder="Placeholder"
-                         value={formData.streetAddress}
-                         // onChange={handleInputChange('officeName')}
-                         className='mt-6'
-                         required
-                    />
-
-                    <CustomInput
-                         type="email"
-                         label="City"
-                         placeholder="Placeholder"
-                         value={formData.streetAddress}
-                         className='mt-6  w-fit'
-                         required
-                    />
-
-                    <CustomInput
-                         type="email"
-                         label="Province"
-                         placeholder="Placeholder"
-                         value={formData.streetAddress}
-                         className='mt-6 w-fit'
-                         required
-                    />
-
-
-
-                    {/* <div className="flex items-center">
-                         <input type="checkbox" id="whatsapp" className="mr-2" />
-                         <label htmlFor="whatsapp" className="text-sm text-gray-600">
-                              This is also my WhatsApp number
-                         </label>
-                         <button className="ml-auto text-blue-500 text-sm">+ Add new number</button>
-                    </div> */}
-
-                    {/* <div className="flex items-center space-x-2">
-                         <select className="border border-gray-300 rounded px-2 py-2">
-                              <option>+121</option>
-                         </select>
-                         <input
+                    <div className='mt-[28px]'>
+                         <CustomInput
                               type="text"
-                              name="whatsappNumber"
-                              value={formData.whatsappNumber}
+                              name="officeName"
+                              label="Office Name"
+                              placeholder="Enter office name"
+                              value={formData.officeName}
                               onChange={handleInputChange}
-                              placeholder="Type your office number"
-                              className="flex-grow border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                              required
                          />
-                    </div> */}
+                         {fieldErrors.officeName && (
+                              <div className="mt-1 text-red-500 text-sm text-left">
+                                   {fieldErrors.officeName}
+                              </div>
+                         )}
+                    </div>
+                    
+                    <div className='mt-6'>
+                         <CustomInput
+                              type="text"
+                              name="registrationNumber"
+                              label="Commercial Registration Number"
+                              placeholder="Enter registration number"
+                              value={formData.registrationNumber}
+                              onChange={handleInputChange}
+                              required
+                         />
+                         {fieldErrors.registrationNumber && (
+                              <div className="mt-1 text-red-500 text-sm text-left">
+                                   {fieldErrors.registrationNumber}
+                              </div>
+                         )}
+                    </div>
+                    
+                    <div className='mt-6'>
+                         <CustomInput
+                              type="text"
+                              name="licenseNumber"
+                              label="Currency Exchange License Number"
+                              placeholder="Enter license number"
+                              value={formData.licenseNumber}
+                              onChange={handleInputChange}
+                              required
+                         />
+                         {fieldErrors.licenseNumber && (
+                              <div className="mt-1 text-red-500 text-sm text-left">
+                                   {fieldErrors.licenseNumber}
+                              </div>
+                         )}
+                    </div>
+                    
+                    <div className='mt-6'>
+                         <CustomInput
+                              type="text"
+                              name="streetAddress"
+                              label="Street Address"
+                              placeholder="Enter street address"
+                              value={formData.streetAddress}
+                              onChange={handleInputChange}
+                              required
+                         />
+                         {fieldErrors.streetAddress && (
+                              <div className="mt-1 text-red-500 text-sm text-left">
+                                   {fieldErrors.streetAddress}
+                              </div>
+                         )}
+                    </div>
+                    
+                    <div className='mt-6'>
+                         <CustomInput
+                              type="text"
+                              name="city"
+                              label="City"
+                              placeholder="Enter city"
+                              value={formData.city}
+                              onChange={handleInputChange}
+                              required
+                         />
+                         {fieldErrors.city && (
+                              <div className="mt-1 text-red-500 text-sm text-left">
+                                   {fieldErrors.city}
+                              </div>
+                         )}
+                    </div>
+                    
+                    <div className='mt-6'>
+                         <CustomInput
+                              type="text"
+                              name="province"
+                              label="Province"
+                              placeholder="Enter province"
+                              value={formData.province}
+                              onChange={handleInputChange}
+                              required
+                         />
+                         {fieldErrors.province && (
+                              <div className="mt-1 text-red-500 text-sm text-left">
+                                   {fieldErrors.province}
+                              </div>
+                         )}
+                    </div>
                     <button
-                         onClick={handleNext}
+                         onClick={handleNextClick}
                          className="mt-6 w-full h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
                          style={{
                               background: 'radial-gradient(65.83% 94.77% at 50.34% 116.3%, #C3F63C 0%, #54D10E 100%)',

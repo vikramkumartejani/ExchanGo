@@ -21,17 +21,79 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
           password: "",
      });
 
+     // Individual field errors and checkbox state
+     const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
+     const [isTermsAccepted, setIsTermsAccepted] = useState<boolean>(false);
+
      const handleInputChange = (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
           setFormData(prev => ({
                ...prev,
                [field]: e.target.value
           }));
+
+          // Clear field error when user starts typing
+          if (fieldErrors[field]) {
+               setFieldErrors(prev => ({
+                    ...prev,
+                    [field]: ''
+               }));
+          }
+     };
+
+     // Email validation function
+     const isValidEmail = (email: string): boolean => {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+     };
+
+     // Password validation function
+     const isValidPassword = (password: string): boolean => {
+          // At least 8 characters, one uppercase, one lowercase, one number
+          const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/;
+          return passwordRegex.test(password);
+     };
+
+     // Form validation function
+     const validateForm = (): boolean => {
+          const errors: { [key: string]: string } = {};
+
+          // Email validation
+          if (!formData.email.trim()) {
+               errors.email = 'Email is required';
+          } else if (!isValidEmail(formData.email)) {
+               errors.email = 'Please enter a valid email address';
+          }
+
+          // Password validation
+          if (!formData.password.trim()) {
+               errors.password = 'Password is required';
+          } else if (formData.password.length < 8) {
+               errors.password = 'Password must be at least 8 characters long';
+          } else if (!isValidPassword(formData.password)) {
+               errors.password = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+          }
+
+          // Terms and conditions validation
+          if (!isTermsAccepted) {
+               errors.terms = 'You must accept the Terms & Conditions to continue';
+          }
+
+          setFieldErrors(errors);
+          return Object.keys(errors).length === 0;
+     };
+
+     const handleNextClick = () => {
+          if (validateForm()) {
+               handleNext();
+          }
      };
 
      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
-          console.log('Form Data:', formData);
-          alert('Form submitted! Check console for data.');
+          if (validateForm()) {
+               console.log('Form Data:', formData);
+               alert('Form submitted! Check console for data.');
+          }
      };
 
      const resetForm = (): void => {
@@ -39,6 +101,19 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
                email: "",
                password: "",
           });
+          setFieldErrors({});
+          setIsTermsAccepted(false);
+     };
+
+     const handleCheckboxChange = (checked: boolean) => {
+          setIsTermsAccepted(checked);
+          // Clear terms error when checkbox is checked
+          if (checked && fieldErrors.terms) {
+               setFieldErrors(prev => ({
+                    ...prev,
+                    terms: ''
+               }));
+          }
      };
 
      return (
@@ -46,37 +121,65 @@ const Step1Form: React.FC<Step1FormProps> = ({ handleNext, handleSignIn }) => {
                <h3 className="text-[#111111] font-bold text-[32px] leading-[38px] mb-2.5">Create an Account</h3>
                <p className="text-[#585858] text-base leading-[22px] mb-6 px-2">Gain visibility, increase foot traffic, and manage your profile easily.</p>
 
-               <CustomInput
-                    type="email"
-                    label="Email"
-                    placeholder="Placeholder"
-                    value={formData.email}
-                    onChange={handleInputChange('email')}
-                    leftIcon={<EmailIcon />}
-                    className='mb-6'
-                    required
-               />
+               <div className='mb-6'>
+                    <CustomInput
+                         type="email"
+                         name="email"
+                         label="Email"
+                         placeholder="Enter your email"
+                         value={formData.email}
+                         onChange={handleInputChange('email')}
+                         leftIcon={<EmailIcon />}
+                         required
+                    />
+                    {fieldErrors.email && (
+                         <div className="mt-1 text-red-500 text-sm text-left">
+                              {fieldErrors.email}
+                         </div>
+                    )}
+               </div>
 
-               <CustomInput
-                    type="password"
-                    label="Password"
-                    placeholder="Placeholder"
-                    value={formData.password}
-                    onChange={handleInputChange('password')}
-                    leftIcon={<LockIcon />}
-                    required
-               />
+               <div className='mb-4'>
+                    <CustomInput
+                         type="password"
+                         name="password"
+                         label="Password"
+                         placeholder="Enter your password"
+                         value={formData.password}
+                         onChange={handleInputChange('password')}
+                         leftIcon={<LockIcon />}
+                         required
+                    />
+                    {fieldErrors.password && (
+                         <div className="mt-1 text-red-500 text-sm text-left">
+                              {fieldErrors.password}
+                         </div>
+                    )}
+                    {!fieldErrors.password && formData.password && (
+                         <div className="mt-1 text-gray-500 text-xs text-left">
+                              Password must be at least 8 characters with uppercase, lowercase, and number
+                         </div>
+                    )}
+               </div>
 
-               <div className="mt-4 flex items-center gap-2.5 mb-8">
-                    <Checkbox />
-                    <h3 className="text-[#585858] text-sm leading-[20px] font-normal">
+               <div className="mt-4 flex items-start gap-2.5 mb-2">
+                    <Checkbox
+                         checked={isTermsAccepted}
+                         onChange={handleCheckboxChange}
+                    />
+                    <h3 className="text-[#585858] text-sm leading-[20px] font-normal text-left">
                          I accept ExchanGo24 <span className='text-[#20523C] font-semibold'>Terms & Conditions</span>
                     </h3>
                </div>
+               {fieldErrors.terms && (
+                    <div className="mb-4 text-red-500 text-sm text-left">
+                         {fieldErrors.terms}
+                    </div>
+               )}
 
                <button
-                    onClick={handleNext}
-                    className="w-full h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
+                    onClick={handleNextClick}
+                    className="mt-6 w-full h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
                     style={{
                          background: 'radial-gradient(65.83% 94.77% at 50.34% 116.3%, #C3F63C 0%, #54D10E 100%)',
                          border: '1px solid rgba(255, 255, 255, 0.4)',
