@@ -1,33 +1,15 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useState, useRef, useEffect } from 'react'
 
 interface Step3FormProps { }
 
 const Step3Form: React.FC<Step3FormProps> = () => {
-     const [markerPosition, setMarkerPosition] = useState({ x: 50, y: 45 })
      const [streetAddress, setStreetAddress] = useState('')
      const [isLoading, setIsLoading] = useState(false)
      const [showSuccessModal, setShowSuccessModal] = useState(false)
      const [isDragging, setIsDragging] = useState(false)
-     const mapRef = useRef<HTMLDivElement>(null)
 
-     const handleMapClick = (e: React.MouseEvent<HTMLDivElement>) => {
-          if (mapRef.current) {
-               const rect = mapRef.current.getBoundingClientRect()
-               const x = ((e.clientX - rect.left) / rect.width) * 100
-               const y = ((e.clientY - rect.top) / rect.height) * 100
-               setMarkerPosition({ x, y })
-          }
-     }
-
-     const handleMarkerDrag = (e: React.MouseEvent<HTMLDivElement>) => {
-          if (isDragging && mapRef.current) {
-               const rect = mapRef.current.getBoundingClientRect()
-               const x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100))
-               const y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100))
-               setMarkerPosition({ x, y })
-          }
-     }
 
      const handleSetLocation = async () => {
           if (!streetAddress.trim()) return
@@ -40,10 +22,6 @@ const Step3Form: React.FC<Step3FormProps> = () => {
           }, 2000)
      }
 
-     const handleGoToDashboard = () => {
-          setShowSuccessModal(false)
-          console.log('Navigate to dashboard')
-     }
 
      return (
           <div className='w-full max-w-[818px] mx-auto text-center'>
@@ -139,30 +117,26 @@ const Step3Form: React.FC<Step3FormProps> = () => {
                          <div className="bg-white rounded-lg max-w-[529px] w-full mx-4 text-center">
                               {/* Confetti Animation */}
                               <div className="relative mb-6 w-full">
-                                  <Image src='/assets/confeti.svg' alt='confeti' width={1000} height={150} />
-                                  <Image src='/assets/thankyou.svg' alt='thankyou' width={144} height={115} className='max-w-[144px] mx-auto -mt-[110px]' />
+                                   <Image src='/assets/confeti.svg' alt='confeti' width={1000} height={150} />
+                                   <Image src='/assets/thankyou.svg' alt='thankyou' width={144} height={115} className='max-w-[144px] mx-auto -mt-[110px]' />
                               </div>
 
                               <div className='mt-[37px] px-[65px]'>
 
-                              <h3 className="text-[20px] leading-[24px] font-bold text-[#111111] mb-2">Thank you for Registering.</h3>
-                              <p className="text-[#585858] text-[14px] leading-[20px] font-normal max-w-[400px] mx-auto">
-                                   Our team will now review your office information. You’ll receive a confirmation email within 24 to 48 hours. Once your account is approved, you’ll be able to access your dashboard and set exchange rates.
-                              </p>
-
-                              <button
-                                   onClick={handleGoToDashboard}
-                                   
-                                   className="mt-[16px] mb-[36px] w-full h-[46px] max-w-[179px] mx-auto cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
-                                   style={{
+                                   <h3 className="text-[20px] leading-[24px] font-bold text-[#111111] mb-2">Thank you for Registering.</h3>
+                                   <p className="text-[#585858] text-[14px] leading-[20px] font-normal max-w-[400px] mx-auto">
+                                        Our team will now review your office information. You’ll receive a confirmation email within 24 to 48 hours. Once your account is approved, you’ll be able to access your dashboard and set exchange rates.
+                                   </p>
+                                   <div className='mt-[16px] mb-[36px] h-[46px] max-w-[179px] mx-auto rounded-md flex items-center justify-center' style={{
                                         background: 'radial-gradient(65.83% 94.77% at 50.34% 116.3%, #C3F63C 0%, #54D10E 100%)',
                                         border: '1px solid rgba(255, 255, 255, 0.4)',
                                         boxShadow: '0px 4px 4px 0px #FFFFFF52 inset, 0px -4px 4px 0px #FFFFFF52 inset'
-                                   }}
-                                   >
-                                   Go to Dashboard
-                              </button>
+                                   }}>
+                                        <Link href='/dashboard' className="w-full  cursor-pointer  relative text-[#20523C] text-base font-semibold leading-[22px]">
+                                             Go to Dashboard
+                                        </Link>
                                    </div>
+                              </div>
                          </div>
                     </div>
                )}
