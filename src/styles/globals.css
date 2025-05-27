@@ -15,3 +15,14 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
      -moz-appearance: textfield;
 }
+
+
+.hide-scrollbar {
+  overflow: scroll; /* or auto */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

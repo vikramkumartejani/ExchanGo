@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ step, handleSignIn }) => {
      return (
           <header className="lg:h-[94px] flex justify-between lg:flex-row flex-col items-center gap-4 py-5 sm:py-6 px-5 md:px-6 lg:px-8 border-b border-[#DEDEDE]">
                <div className="flex items-center w-full lg:w-fit justify-between">
-                    <Image src="/assets/logo.svg" alt="ExchanGo24" width={190} height={41}  className='sm:w-[190px] w-[143px]'/>
+                    <Image src="/assets/logo.svg" alt="ExchanGo24" width={190} height={41} className='sm:w-[190px] w-[143px]'/>
                     <div className='lg:hidden block'><SignInButton/></div>
                </div>
 
