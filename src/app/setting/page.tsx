@@ -1,19 +1,69 @@
 'use client'
 import DashboardLayout from '@/components/DashboardLayout'
-import React, { useState } from 'react'
+import React, { JSX, useState } from 'react'
 
-const Setting = () => {
-     const [activeTab, setActiveTab] = useState('Office Information')
-     const [isVisible, setIsVisible] = useState(true)
-     const [officeName, setOfficeName] = useState('')
+interface TabType {
+     id: string;
+     label: string;
+}
 
-     const tabs = [
-          'Office Information',
-          'Image & Logo',
-          'Access & Security',
-          'Notifications & Reminders',
-          'Support & Documentation'
+const Setting: React.FC = () => {
+     const [activeTab, setActiveTab] = useState<string>('Office Information')
+     const [isVisible, setIsVisible] = useState<boolean>(true)
+     const [officeName, setOfficeName] = useState<string>('')
+
+     const tabs: TabType[] = [
+          { id: 'Office Information', label: 'Office Information' },
+          { id: 'Image & Logo', label: 'Image & Logo' },
+          { id: 'Access & Security', label: 'Access & Security' },
+          { id: 'Notifications & Reminders', label: 'Notifications & Reminders' },
+          { id: 'Support & Documentation', label: 'Support & Documentation' }
      ]
+
+     const handleTabClick = (tabId: string): void => {
+          setActiveTab(tabId)
+     }
+
+     const renderTabContent = (): JSX.Element => {
+          switch (activeTab) {
+               case 'Office Information':
+                    return (
+                         <div className=''>
+                              <h1>Office Information</h1>
+                         </div>
+                    )
+               case 'Image & Logo':
+                    return (
+                         <div className=''>
+                              <h1>Image & Logo</h1>
+                         </div>
+                    )
+               case 'Access & Security':
+                    return (
+                         <div className=''>
+                              <h1>Access & Security</h1>
+                         </div>
+                    )
+               case 'Notifications & Reminders':
+                    return (
+                         <div className=''>
+                              <h1>Notifications & Reminders</h1>
+                         </div>
+                    )
+               case 'Support & Documentation':
+                    return (
+                         <div className=''>
+                              <h1>Support & Documentation</h1>
+                         </div>
+                    )
+               default:
+                    return (
+                         <div className=''>
+                              <h1>Select a tab</h1>
+                         </div>
+                    )
+          }
+     }
 
      return (
           <DashboardLayout>
@@ -23,57 +73,30 @@ const Setting = () => {
 
                     <div className='mt-6'>
                          {/* Tab Navigation */}
-                         <div className='border-b border-[#DEDEDE] mb-8 overflow-hidden'>
-                              <div className='flex overflow-x-auto hide-scrollbar'>
-                                   {tabs.map((tab) => (
+                         <div className='border-b border-[#DEDEDE] mb-8 overflow-hidden relative'>
+                              <div className='flex overflow-x-auto hide-scrollbar' style={{ background: "linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)" }}>
+                                   {tabs.map((tab: TabType) => (
                                         <button
-                                             key={tab}
-                                             onClick={() => setActiveTab(tab)}
-                                             className={`flex-shrink-0 px-0 pb-[9.12px] cursor-pointer pt-[8.11px] mr-6 text-[14px] font-medium leading-[18px] transition-colors whitespace-nowrap ${activeTab === tab
+                                             key={tab.id}
+                                             onClick={() => handleTabClick(tab.id)}
+                                             className={`flex-shrink-0 px-0 pb-[9.12px] cursor-pointer pt-[8.11px] mr-6 last:mr-0 text-[14px] font-medium leading-[18px] transition-colors whitespace-nowrap ${activeTab === tab.id
                                                        ? 'text-[#111111] border-b-2 border-[#20523C]'
                                                        : 'text-[#585858] border-transparent hover:text-[#585858]'
                                                   }`}
+                                             type="button"
+                                             aria-selected={activeTab === tab.id}
+                                             role="tab"
                                         >
-                                             {tab}
+                                             {tab.label}
                                         </button>
                                    ))}
                               </div>
                          </div>
 
                          {/* Content Area */}
-                         {activeTab === 'Office Information' && (
-                              <div className=''>
-                                  <h1>Office Information</h1>
-                              </div>
-                         )}
-
-                         {/* Content Area */}
-                         {activeTab === 'Image & Logo' && (
-                              <div className=''>
-                                  <h1>Image & Logo</h1>
-                              </div>
-                         )}
-
-                         {/* Content Area */}
-                         {activeTab === 'Access & Security' && (
-                              <div className=''>
-                                  <h1>Access & Security</h1>
-                              </div>
-                         )}
-
-                         {/* Content Area */}
-                         {activeTab === 'Notifications & Reminders' && (
-                              <div className=''>
-                                  <h1>Notifications & Reminders</h1>
-                              </div>
-                         )}
-
-                         {/* Content Area */}
-                         {activeTab === 'Support & Documentation' && (
-                              <div className=''>
-                                  <h1>Support & Documentation</h1>
-                              </div>
-                         )}
+                         <div role="tabpanel" aria-labelledby={`tab-${activeTab}`}>
+                              {renderTabContent()}
+                         </div>
                     </div>
                </div>
           </DashboardLayout>
