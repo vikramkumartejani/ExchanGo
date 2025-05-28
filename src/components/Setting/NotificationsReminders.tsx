@@ -13,12 +13,13 @@ const NotificationsReminders = () => {
                          defaultChecked={false}
                          size='md'
                          onChange={(checked) => console.log('Toggle changed:', checked)}
+                         className='w-[40px]'
                     />
                </div>
                <div className='bg-[#DEDEDE] w-full h-[1px] mb-6'></div>
                <div className='flex items-end justify-end w-full'>
                     <button
-                         className="w-[146px] h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
+                         className="w-full sm:w-[146px] h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
                          style={{
                               background: 'radial-gradient(65.83% 94.77% at 50.34% 116.3%, #C3F63C 0%, #54D10E 100%)',
                               border: '1px solid rgba(255, 255, 255, 0.4)',
