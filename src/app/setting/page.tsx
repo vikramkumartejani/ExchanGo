@@ -1,5 +1,8 @@
 'use client'
 import DashboardLayout from '@/components/DashboardLayout'
+import AccessSecurity from '@/components/Setting/AccessSecurity';
+import NotificationsReminders from '@/components/Setting/NotificationsReminders';
+import SupportDocumentation from '@/components/Setting/SupportDocumentation';
 import React, { JSX, useState } from 'react'
 
 interface TabType {
@@ -40,21 +43,15 @@ const Setting: React.FC = () => {
                     )
                case 'Access & Security':
                     return (
-                         <div className=''>
-                              <h1>Access & Security</h1>
-                         </div>
+                         <AccessSecurity/>
                     )
                case 'Notifications & Reminders':
                     return (
-                         <div className=''>
-                              <h1>Notifications & Reminders</h1>
-                         </div>
+                         <NotificationsReminders/>
                     )
                case 'Support & Documentation':
                     return (
-                         <div className=''>
-                              <h1>Support & Documentation</h1>
-                         </div>
+                         <SupportDocumentation/>
                     )
                default:
                     return (
@@ -71,9 +68,9 @@ const Setting: React.FC = () => {
                     <h3 className='text-[#111111] font-bold text-[32px] leading-[38px] mb-2'>Setting</h3>
                     <p className='text-[#585858] text-[14px] font-normal leading-[20px]'>Update setting for better features performance</p>
 
-                    <div className='mt-6'>
+                    <div className='mt-4 sm:mt-6'>
                          {/* Tab Navigation */}
-                         <div className='border-b border-[#DEDEDE] mb-8 overflow-hidden relative'>
+                         <div className='border-b border-[#DEDEDE] mb-6 sm:mb-8 overflow-hidden relative'>
                               <div className='flex overflow-x-auto hide-scrollbar' style={{ background: "linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)" }}>
                                    {tabs.map((tab: TabType) => (
                                         <button

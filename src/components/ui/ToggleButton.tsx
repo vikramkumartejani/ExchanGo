@@ -50,7 +50,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
 
      const sizeClasses = {
           sm: { container: 'w-8 h-4', circle: 'w-3 h-3', translate: 'translate-x-4' },
-          md: { container: 'w-12 h-6', circle: 'w-5 h-5', translate: 'translate-x-6' },
+          md: { container: 'w-[36.5px] h-[20.28px]', circle: 'w-[16.22px] h-[16.22px]', translate: 'translate-x-[19px]' },
           lg: { container: 'w-[36px] md:w-[42px] h-[20px] md:h-6', circle: 'w-[16px] h-[16px] md:w-[18px] md:h-[18px]', translate: 'translate-x-[18px] md:translate-x-[22px]' },
           xl: { container: 'w-20 h-10', circle: 'w-9 h-9', translate: 'translate-x-10' }
      };
