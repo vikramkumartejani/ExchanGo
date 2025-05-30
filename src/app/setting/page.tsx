@@ -1,7 +1,9 @@
 'use client'
 import DashboardLayout from '@/components/DashboardLayout'
 import AccessSecurity from '@/components/Setting/AccessSecurity';
+import ImageLogo from '@/components/Setting/ImageLogo';
 import NotificationsReminders from '@/components/Setting/NotificationsReminders';
+import OfficeInformation from '@/components/Setting/OfficeInformation';
 import SupportDocumentation from '@/components/Setting/SupportDocumentation';
 import React, { JSX, useState } from 'react'
 
@@ -31,15 +33,11 @@ const Setting: React.FC = () => {
           switch (activeTab) {
                case 'Office Information':
                     return (
-                         <div className=''>
-                              <h1>Office Information</h1>
-                         </div>
+                         <OfficeInformation/>
                     )
                case 'Image & Logo':
                     return (
-                         <div className=''>
-                              <h1>Image & Logo</h1>
-                         </div>
+                         <ImageLogo/>
                     )
                case 'Access & Security':
                     return (

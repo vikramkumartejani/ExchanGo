@@ -92,21 +92,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           fileInputRef.current?.click();
      };
 
-     const handleRemoveImage = (event: React.MouseEvent) => {
-          event.stopPropagation();
-          setPreviewUrl(null);
-          if (fileInputRef.current) {
-               fileInputRef.current.value = '';
-          }
-     };
-
      return (
           <div className="flex justify-center items-center cursor-pointer gap-5">
                <div
-                    className={`min-w-[100px] min-h-[100px] rounded-full flex items-center justify-center border transition-all duration-200 relative overflow-hidden ${isDragging
+                    className={`min-w-[86px] min-h-[86px] sm:min-w-[100px] sm:min-h-[100px] rounded-full flex items-center justify-center border transition-all duration-200 relative overflow-hidden ${isDragging
                          ? 'border-[#20523C] bg-green-50'
                          : previewUrl
-                              ? 'border-[#20523C]'
+                              ? 'border-[#DEDEDE] bg-[#F0F3F5]'
                               : 'border-[#DEDEDE] hover:border-[#20523C]'
                          }`}
                     onDragOver={handleDragOver}
@@ -138,14 +130,14 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                     <button
                          onClick={handleClick}
                          disabled={isUploading}
-                         className={`border border-[#20523C] rounded-md h-[38px] w-[126px] text-[#20523C] text-[16px] leading-[22px] font-medium transition duration-300 ${isUploading
+                         className={`border border-[#20523C] rounded-md h-[32px] sm:h-[38px] px-3.5 sm:px-4 text-[#20523C] text-[13.81px] sm:text-[16px] leading-[19px] sm:leading-[22px] font-medium transition duration-300 ${isUploading
                               ? 'opacity-50 cursor-not-allowed'
                               : 'hover:bg-[#20523C] hover:text-white'
                               }`}
                     >
-                         {isUploading ? 'Uploading...' : previewUrl ? 'Change Logo' : 'Upload Logo'}
+                         {isUploading ? 'Uploading...' : previewUrl ? 'Replace image' : 'Upload Logo'}
                     </button>
-                    <p className="text-left text-[#585858] text-sm leading-[20px] font-normal">
+                    <p className="text-left text-[#585858] text-[12px] sm:text-sm leading-[17px] sm:leading-[20px] font-normal">
                          {acceptedFormats.join(', ')} files up to {maxSizeInMB}MB. Recommended size {recommendedSize}
                     </p>
                </div>

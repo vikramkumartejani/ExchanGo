@@ -37,19 +37,19 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
 
                          <div className='px-5'>
                               <h2 className='text-[#111111] text-[20px] leading-[24px] font-bold mb-2 mt-10'>{title}</h2>
-                         <p className='text-[#585858] text-[14px] font-normal leading-[20px] mb-4'>{message}</p>
+                              <p className='text-[#585858] text-[14px] font-normal leading-[20px] mb-4'>{message}</p>
 
-                         <button
-                              onClick={onClose}
-                              className="mb-9 w-full sm:w-[194px] h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
-                              style={{
-                                   background: 'radial-gradient(65.83% 94.77% at 50.34% 116.3%, #C3F63C 0%, #54D10E 100%)',
-                                   border: '1px solid rgba(255, 255, 255, 0.4)',
-                                   boxShadow: '0px 4px 4px 0px #FFFFFF52 inset, 0px -4px 4px 0px #FFFFFF52 inset'
-                              }}
-                         >
-                              Back to Dashboard
-                         </button>
+                              <button
+                                   onClick={onClose}
+                                   className="mb-9 w-full sm:w-[194px] h-[46px] cursor-pointer rounded-md relative text-[#20523C] text-base font-semibold leading-[22px]"
+                                   style={{
+                                        background: 'radial-gradient(65.83% 94.77% at 50.34% 116.3%, #C3F63C 0%, #54D10E 100%)',
+                                        border: '1px solid rgba(255, 255, 255, 0.4)',
+                                        boxShadow: '0px 4px 4px 0px #FFFFFF52 inset, 0px -4px 4px 0px #FFFFFF52 inset'
+                                   }}
+                              >
+                                   Back to Dashboard
+                              </button>
                          </div>
                     </div>
                </div>
