@@ -120,7 +120,6 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
                                              onTouchStart={handleTouchStart}
                                              onTouchMove={handleTouchMove}
                                              onTouchEnd={handleTouchEnd}
-                                              onClick={() => handleOptionSelect("")}
                                         />
                                         {deleteReasons.map((reason, index) => (
                                              <div
