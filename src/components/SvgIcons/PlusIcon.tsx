@@ -8,8 +8,8 @@ const PlusIcon = () => {
                     <path d="M9.875 15.3227V4.67773" stroke="#20523C" strokeWidth="2" strokeLinecap="round" />
                </svg>
                <svg width="17" height="17" className='block sm:hidden -mt-[1px]' viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4.16406 8.5H13.6263" stroke="#20523C" stroke-width="1.01381" stroke-linecap="round" />
-                    <path d="M8.89062 13.2318V3.76953" stroke="#20523C" stroke-width="1.01381" stroke-linecap="round" />
+                    <path d="M4.16406 8.5H13.6263" stroke="#20523C" strokeWidth="1.01381" strokeLinecap="round" />
+                    <path d="M8.89062 13.2318V3.76953" stroke="#20523C" strokeWidth="1.01381" strokeLinecap="round" />
                </svg>
           </>
      )
