@@ -116,7 +116,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
                               isMobile ? (
                                    <div
                                         className={`
-                                             fixed inset-x-0 bottom-0 z-50 bg-white rounded-t-2xl pb-8 max-h-[340px] overflow-y-auto
+                                             fixed inset-x-0  bottom-0 z-50 bg-white rounded-t-2xl pb-8 max-h-[340px] overflow-y-auto
                                              shadow-[0_-2px_20px_rgba(0,0,0,0.1)]
                                              transform transition-transform duration-300
                                              ${dropdownOpen ? 'translate-y-0' : 'translate-y-full'}

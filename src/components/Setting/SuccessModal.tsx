@@ -32,10 +32,11 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
                     <div className='relative z-10'>
                          <div className="relative mb-6 w-full">
                               <Image src='/assets/confeti.svg' alt='confeti' width={1000} height={150} />
-                              <Image src='/assets/password-update.svg' alt='password-update' width={144} height={115} className='max-w-[140px] mx-auto -mt-[110px]' />
+                              <Image src='/assets/password-update.svg' alt='password-update' width={140} height={115} className='max-w-[120px] sm:max-w-[140px] mx-auto -mt-[60px] sm:-mt-[110px]' />
                          </div>
 
-                         <h2 className='text-[#111111] text-[20px] leading-[24px] font-bold mb-2 mt-10'>{title}</h2>
+                         <div className='px-5'>
+                              <h2 className='text-[#111111] text-[20px] leading-[24px] font-bold mb-2 mt-10'>{title}</h2>
                          <p className='text-[#585858] text-[14px] font-normal leading-[20px] mb-4'>{message}</p>
 
                          <button
@@ -49,6 +50,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
                          >
                               Back to Dashboard
                          </button>
+                         </div>
                     </div>
                </div>
           </div>
