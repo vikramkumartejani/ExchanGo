@@ -14,8 +14,6 @@ interface TabType {
 
 const Setting: React.FC = () => {
      const [activeTab, setActiveTab] = useState<string>('Office Information')
-     const [isVisible, setIsVisible] = useState<boolean>(true)
-     const [officeName, setOfficeName] = useState<string>('')
 
      const tabs: TabType[] = [
           { id: 'Office Information', label: 'Office Information' },

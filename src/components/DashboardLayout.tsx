@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: LayoutProps) {
                <DashboardHeader />
                <div className="flex max-w-[1140px] mx-auto w-full justify-between items-start gap-8 lg:gap-[50px]">
                     <Sidebar />
-                    <main className="max-w-[796px] mx-auto w-full px-5 md:pr-5 pb-[120px] overflow-x-auto">{children}</main>
+                    <main className="max-w-[796px] mx-auto w-full px-5 md:pl-0 pb-[120px] overflow-x-auto">{children}</main>
                     <BottomBar/>
                </div>
           </div>
